@@ -110,7 +110,7 @@ parfor ii = 1:Ns*Ns
     u0i = u0seg(:,:,ii);
     vari = varseg(:,:,ii);
     gaini = gainseg(:,:,ii);
-    outi = BFGS_Ben(u0i,@(x)calcost(x,u0i,vari,gaini,invpupil,alpha));
+    outi = fminunc(@(x)calcost(x,u0i,vari,gaini,invpupil,alpha), u0i,opts);
     useg(:,:,ii) = outi;
 end
 toc
